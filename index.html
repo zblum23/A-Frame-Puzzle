@@ -1,24 +1,312 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <!-- scipt linking to aframe -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <!-- link to my custom script -->
-    <script src="js/script.js"></script>
-    <title>A-Frame-Puzzle</title>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@436d40c/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 </head>
 <body>
-    <a-scene background="color: #FAFAFA">
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
-        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+<a-scene>
+    <a-entity id="rig" movement-controls="fly: true; speed: 50">
+        <a-entity camera position="2 1.6 -3" look-controls>
+        </a-entity>
+    </a-entity>
 
-        <a-text id="score-text" value="welcome to the puzzle" position="0 2 -3" color="black"></a-text>
-        <a-entity oculus-touch-controls="hand: left" update-score-text="Do You Want to Play a Game"></a-entity>
-        <a-entity oculus-touch-controls="hand: right"></a-entity>
-        
-    </a-scene>
+<a-camera>
+    <a-entity cursor="fuse: true; fuseTimeout: 1000" position="0 0 -1"
+    geometry="primitive: sphere; radius: 0.005"
+    material="color: #000000; shader: flat; opacity: 0.5"
+    animation__enter="property: scale;
+                      to: 3 3 3;
+                      dur: 1000;
+                      easing: linear;
+                      startEvents: mouseenter"
+    event-set__reset="_event: animationcomplete__enter; scale: 1 1 1"
+    animation__leave="property: scale;
+                      to: 1 1 1;
+                      dur: 1000;
+                      easing: linear;
+                      startEvents: mouseleave">
+</a-entity>
+</a-camera>
+
+<assets>
+    <img id="brick" src="assets/brick.jpg">
+    <img id="floor" src="assets/floor.jpg">
+    <img id="door" src="assets/door.jpg">
+    <img id="roof" src="assets/roof.jpg">
+    <a-assets-item id="forest" src="moddel-assets/stylised_redwood_trees_pack_with_lod_groups/scene.gltf"></a-assets-item>
+    <a-assets-item id="table" src="moddel-assets/wooden_table/scene.gltf"></a-assets-item>
+    <a-assets-item id="numberpad" src="moddel-assets/simple_sci-fi_wall_panel/scene.gltf"></a-assets-item>
+</assets>
+
+
+<a-plane color="green" height="20" width="20" rotation="-90 0 0" scale="10 10 1"></a-plane>
+
+<a-entity id="tree1"
+gltf-model="#forest"
+position="-19.910 5.828 -31.999"
+scale=".003 .003 .003"></a-entity>
+<a-entity>
+<a-entity id="tree2"
+gltf-model="#forest"
+position="31.200 5.828 -31.989"
+scale=".003 .003 .003"></a-entity>
+
+    <!-- house 1 -->
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="-1.741 2.013 -5.000"    
+    scale="1.000 1.000 1.000"></a-box>
+    <!-- door -->
+    <a-entity animation="property: rotation; to: 0 90 0; dur: 2000; startEvents: click; ;">
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="1.204 1.511 -4.898"
+    scale="0.458 0.731 1.000" 
+    rotation="0 0 0"></a-box>
+</a-entity>
+    <!-- top of door frame -->
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="1.213 3.478 -5.000"
+    scale="0.473 0.255 1.000"></a-box>
+    <!-- front right wall -->
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4"
+    width="4"
+    depth="0.1" 
+    position="4.013 2.008 -5.000"
+    scale="1.000 1.000 1.000"></a-box>
+    <!-- floor -->
+    <a-box src="#floor" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="1.124 0 -9.087"
+    scale="2.437 2.036 -1.707"
+    rotation="90 0 0"></a-box>
+    <!-- right wall -->
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="5.942 1.928 -9.014"
+    scale="1.994 1.036 1.000" 
+    rotation="-180.000 90.000 -180.000"></a-box>
+    <!-- back wall -->
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="1.139 2.023 -13.075"
+    scale="2.418 1 1" 
+    rotation="0 180 0"></a-box>
+    <!-- left wall -->
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="-3.755 1.972 -9.034"
+    scale="2.035 1 1" 
+    rotation="0 90 0"></a-box>
+    <!-- roof left -->
+    <a-box src="#roof" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="-1.424 5.841 -8.948"
+    scale="2.035 1.704 1.000" 
+    rotation="50.000 90 0"></a-box>
+    <!-- roof right -->
+    <a-box src="#roof" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="3.763 5.841 -8.948"
+    scale="2.035 1.704 1.000" 
+    rotation="50.000 -90 0"></a-box>
+    <!-- roof triangle -->
+    <a-triangle src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="1.256 5.896 -4.962"
+    scale="10.292 4.369 1" 
+    side="double"></a-triangle>
+
+    <a-triangle src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="1.256 5.896 -13.016"
+    scale="10.292 4.369 1" 
+    side="double"></a-triangle>
+
+    <!-- window 1 -->
+    <a-box src="#window" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="-3.748 1.947 -8.752"
+    scale="0.653 0.654 2.035" 
+    rotation="0 90 0"></a-box>
+    <!-- window 2 -->
+    <a-box src="#window" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="5.905 1.947 -8.752"
+    scale="0.653 0.654 2.035" 
+    rotation="0 90 0"></a-box>
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" width="4"
+    depth="0.1" 
+    position="-1.075 5.457 -13.300"
+    scale="0.454 2.735 4.030" 
+    rotation="0 0 0"></a-box>
+    <!-- fire place -->
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="2.900 0.877 -12.937"
+    scale="0.192 0.396 2.259"></a-box>
     
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="3.714 1.779 -12.900"
+    scale="-0.610 0.104 -2.285"></a-box>
+    
+    <a-box src="#brick" 
+    repeat="1 1" 
+    height="4" 
+    width="4" 
+    depth="0.1" 
+    position="4.679 0.846 -12.956"
+    scale="0.129 0.384 1.197"></a-box>
+</a-entity>
+
+<a-box
+color="black"    
+repeat="1 1" 
+height="4" 
+width="4" 
+depth="0.1" 
+position="1.321 2.009 -3.145"
+scale="1.75 1 1"
+></a-box>   
+
+<a-entity text="value: Do You Want To Play A Game?;" position="3.312 3.704 -2.867" scale="10 10 1"></a-entity>
+
+<!-- red box  -->
+<a-box
+id="red"
+color="red"
+repeat="1 1"
+height="1"
+width="1"
+depth="1"
+postion="0 0.730 -2.155"
+scale="1 1 1"
+event-set__tarvis="_event: click; _target: #text; visible: true"
+></a-box>
+
+<a-entity text="value: Click the RED button to continue;" position=" 3.591 3.391 -3.089" scale="10 10 1"  ></a-entity>
+
+<a-entity id=text text="value: the aim is to get into the house for your prize to win find the hidden key to start find the blue button in the trees which will make a black box apear. Enter the box for your next clue;" position=" 1.519 2.592 -3.089" scale="5 5 1" visible="false"  ></a-entity>
+
+
+
+<!-- house 2 -->
+<a-box
+id="blue"
+color="blue"
+height="1"
+width="1"
+depth="1"
+position="-16.677 2.004 -30.535"
+scale=".3 .3 .3"
+event-set__tarvis="_event: click; _target: #space; visible: true"
+></a-box>
+
+<a-entity id="space" visible="false" >
+        <a-entity id="table"
+gltf-model="#table"
+position="1.168 0 22.450"
+scale=".004 .004 .004"></a-entity>
+
+<a-entity id="numberpad"
+gltf-model="#numberpad"
+position="1.168 5.086 27.555"
+scale=".05 .05 .05"
+rotation="-180 0 -180"></a-entity>
+<a-entity>
+    
+    <a-box
+    color="black"
+    height="1"
+    width="1"
+    depth="1"
+    position="1.000 5.06 22.453"
+    scale="10 10 10"
+    side="double"
+    ></a-box>
+    <a-box
+    color="white"
+    position="1.000 1.029 17.417"
+    scale="0.350 2.000 0.168"
+    ></a-box>
+    
+    <a-box
+    color="white"
+    position="0.164 2.210 17.417"
+    scale="0.350 2.000 0.168"
+    rotation="0 0 90"
+    ></a-box>
+    <a-box
+    color="white"
+    position="-0.646 1.029 17.417"
+    scale="0.350 2.000 0.168"
+    ></a-box>
+   
+    <a-entity id=text text="value: Nice job now for your next job "
+    rotation="-90 -90 0"
+    position="1.382 0.929 23.042"
+    scale="3 3 1"></a-entity>
+    
+    <a-entity id=text text="value: There are three numbers hidden in the room the correct order is decending order to click them in order to open the door of the house"
+    rotation="-90 -90 0"
+    position="1.063 0.929 22.528"
+    scale="2 2 1"></a-entity>
+</a-entity>
+
+</a-scene>
 </body>
 </html>
+

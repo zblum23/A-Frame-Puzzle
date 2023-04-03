@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wooden Table
+* source:	https://sketchfab.com/3d-models/wooden-table-8a5b41d6445c4f1fbefb2e4abfeebb0d
+* author:	Prateek.Sharma (https://sketchfab.com/Prateek.Sharma)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wooden Table" (https://sketchfab.com/3d-models/wooden-table-8a5b41d6445c4f1fbefb2e4abfeebb0d) by Prateek.Sharma (https://sketchfab.com/Prateek.Sharma) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
