@@ -20,5 +20,9 @@ AFRAME.registerComponent('update-score-text', {
 
     tick: function (time, timeDelta) {
       // Do something on every scene tick or frame.
+
+      
     }
+
+    
 });
